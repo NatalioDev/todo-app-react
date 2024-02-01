@@ -9,7 +9,7 @@ export  default  defineConfig ( ( { command } ) =>  {
   } 
 
   if  (command !==  'serve' ) { 
-    config. base  =  '/todo-app-react' 
+    config. base  =  '/todo-app-react/' 
   } 
 
   return  config 
