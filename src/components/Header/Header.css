@@ -1,0 +1,11 @@
+/* Estilo opcional para el botón si es necesario 
+.button-header {
+    /* Estilos aquí 
+  }
+  */
+  /* Ajusta según sea necesario */
+  img {
+    width: 24px; /* Ajusta el ancho según tus necesidades */
+    height: 24px; /* Ajusta la altura según tus necesidades */
+  }
+  
