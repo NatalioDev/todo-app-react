@@ -3,10 +3,10 @@ import { useState } from "react";
 import "./Header.css"
 
 export default function Header() {
-  const [theme, setTheme] = useState(false);
+  const [theme, setTheme] = useState(true);
 
   return (
-    <div>
+    <header>
       <h1>Todo</h1>
       <button className="button-header" onClick={() => setTheme(!theme)}>
         {theme ? (
@@ -15,6 +15,6 @@ export default function Header() {
           <img src="icon/icon-sun.svg" alt="Sun Icon" />
         )}
       </button>
-    </div>
+    </header>
   );
 }
