@@ -7,6 +7,7 @@ import todoContext, { TodoContextProps } from "../../../utilites/TodoContext";
 
 // Importa el componente Todo utilizado en la lista de tareas
 import Todo from "../Todo"; 
+import TodoStats from "../TodoStats/TodoStats";
 
 // Componente funcional TodoContainer
 export default function TodoContainer() {
@@ -81,7 +82,7 @@ export default function TodoContainer() {
         </Droppable>
       </DragDropContext>
       {/* Si hay tareas filtradas, muestra un encabezado para estadísticas */}
-      {filteredTodos.length > 0 && <h1>Todos Stats</h1>}
+      {filteredTodos.length > 0 && <TodoStats/>}
     </>
   );
 }

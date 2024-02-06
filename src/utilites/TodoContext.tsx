@@ -7,7 +7,7 @@ export interface TodoType {
   id: string;
 }
 
-type FilterOptions = 'All' | 'Completed' | 'Active';
+export type FilterOptions = 'All' | 'Completed' | 'Active';
 
 export interface TodoContextProps {
   todos: TodoType[];

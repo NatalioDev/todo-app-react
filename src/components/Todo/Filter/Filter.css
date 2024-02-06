@@ -1,0 +1,28 @@
+.filter-todo{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    height: 100%;
+}
+
+.filter-todo::after{
+    content: "Drag and drop to reorder list";
+    left: -1.2rem;
+    padding-block: 1rem;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    top: 120%;
+}
+
+p{
+    font-weight: 600;
+}
+
+.filter-todo p{
+    cursor: pointer;
+}
+
+.filter-todo .active{
+    color: #3a7bfd;
+}
