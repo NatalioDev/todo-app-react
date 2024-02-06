@@ -1,5 +1,6 @@
 import "./App.css";
 import Header from "./components/Header/Header";
+import TodoContainer from "./components/Todo/TodoContainer/TodoContainer";
 import TodoInput from "./components/Todo/Todoinput/TodoInput";
 import { TodoProvider } from "./utilites/TodoContext";
 
@@ -10,6 +11,7 @@ function App() {
       <div className="container">
         <TodoProvider>
           <TodoInput/>
+          <TodoContainer/>
         </TodoProvider>
         
       </div>

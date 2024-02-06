@@ -1,7 +1,7 @@
 import React, { createContext, useState, useEffect, FC, ReactNode } from 'react';
 
 // Definición de tipos
-export interface Todo {
+export interface TodoType {
   text: string;
   completed: boolean;
   id: string;
@@ -10,10 +10,10 @@ export interface Todo {
 type FilterOptions = 'All' | 'Completed' | 'Active';
 
 export interface TodoContextProps {
-  todos: Todo[];
+  todos: TodoType[];
   filter: FilterOptions;
-  setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
-  addTodo: (item: Todo) => void;
+  setTodos: React.Dispatch<React.SetStateAction<TodoType[]>>;
+  addTodo: (item: TodoType) => void;
   setCompleted: (item: string) => void;
   clearTodo: (item: string) => void;
   clearCompleted: () => void;
@@ -22,37 +22,39 @@ export interface TodoContextProps {
 
 const todoContext = createContext<TodoContextProps | undefined>(undefined);
 
-const getTodoList = (): Todo[] => {
+const getTodoList = (): TodoType[] => {
   const todoList = localStorage.getItem('todo-list');
   return todoList ? JSON.parse(todoList) : [];
 };
 
 export const TodoProvider: FC<{ children: ReactNode }> = ({ children }) => {
-  const [todos, setTodos] = useState<Todo[]>(getTodoList);
+  const [todos, setTodos] = useState<TodoType[]>(getTodoList);
   const [filter, setFilter] = useState<FilterOptions>('All');
 
   useEffect(() => {
     localStorage.setItem('todo-list', JSON.stringify(todos));
   }, [todos]);
 
-  const addTodo = (item: Todo) => {
+  const addTodo = (item: TodoType) => {
     const isDuplicate = todos.some((todo) => todo.text === item.text);
     if (!isDuplicate) {
       setTodos([item, ...todos]);
     }
   };
 
-  const clearTodo = (item: string) => {
-    setTodos((prevTodos) => prevTodos.filter((todo) => todo.text !== item));
+  const clearTodo = (id: string) => {
+    setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
   };
 
-  const setCompleted = (item: string) => {
+  const setCompleted = (id: string) => {
     setTodos((prevTodos) =>
       prevTodos.map((todo) => {
-        if (todo.text === item) {
+        if (todo.id === id) {
           todo.completed = !todo.completed;
         }
+        console.log(todo)
         return todo;
+        
       })
     );
   };
