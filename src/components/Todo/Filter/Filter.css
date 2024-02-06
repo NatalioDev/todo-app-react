@@ -7,7 +7,7 @@
 
 .filter-todo::after{
     content: "Drag and drop to reorder list";
-    left: -1.2rem;
+    left: -.2rem;
     padding-block: 1rem;
     position: absolute;
     text-align: center;

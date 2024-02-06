@@ -2,6 +2,9 @@
 import { useContext } from "react";
 import { DragDropContext, Droppable, Draggable, DropResult } from "react-beautiful-dnd";
 
+//Styles
+import "./TodoContainer.css"
+
 // Importa el contexto y las interfaces relacionadas desde el archivo TodoContext.tsx
 import todoContext, { TodoContextProps } from "../../../utilites/TodoContext";
 
@@ -23,6 +26,23 @@ export default function TodoContainer() {
     return true;
   });
 
+  // Mensaje cuando no se encuentren tareas según el filtro
+let noTodosMessage = "";
+switch (filter) {
+  case "All":
+    noTodosMessage = "No se encontraron tareas.";
+    break;
+  case "Active":
+    noTodosMessage = "No se encontraron tareas activas.";
+    break;
+  case "Completed":
+    noTodosMessage = "No se encontraron tareas completadas.";
+    break;
+  default:
+    noTodosMessage = "No se encontraron tareas.";
+    break;
+}
+
   // Maneja el evento cuando se arrastran y sueltan los elementos en la lista
   function handleOnDragEnd(result: DropResult) {
     if (!result.destination) return;  // Si no hay destino, no hay acción necesaria
@@ -38,11 +58,11 @@ export default function TodoContainer() {
 
     // Actualiza el estado con la lista reordenada
     setTodos(updatedTodos);
-  }
+  } 
 
   // Si no hay tareas filtradas, muestra un mensaje indicando que no hay tareas
-  if (filteredTodos.length === 0) {
-    return <h2 className="h2-no-todo">No Todos Yet! Add a new task to get started</h2>;
+  if (todos.length === 0) {
+    return <h2 className="h2-no-todo">No Todos Yet! <br/> Add a new task to get started</h2>;
   }
   // Renderiza el componente
   return (
@@ -50,10 +70,13 @@ export default function TodoContainer() {
       {/* Componente para manejar el arrastrar y soltar */}
       <DragDropContext onDragEnd={handleOnDragEnd}>
         {/* Lista contenedora de tareas, identificada por "todos" */}
-        <Droppable droppableId="todos">
+        {/* Lista de tareas o mensaje cuando no se encuentren */}
+          {filteredTodos.length > 0 ? (
+              <Droppable droppableId="todos">
           {(provided) => (
             // Renderiza la lista contenedora, proporcionando propiedades y referencias
             <div {...provided.droppableProps} ref={provided.innerRef} className="todo-container">
+              
               {/* Mapea y renderiza las tareas filtradas como elementos arrastrables */}
               {filteredTodos.map((todo, index) => (
                 <Draggable key={todo.id} draggableId={todo.id} index={index}>
@@ -74,15 +97,23 @@ export default function TodoContainer() {
                       />
                     </div>
                   )}
+              
                 </Draggable>
               ))}
               {provided.placeholder} {/* Espacio reservado para elementos arrastrables */}
             </div>
+            
           )}
+          
         </Droppable>
+        ):(
+          <div className="no-todos-message">
+            <h2>{noTodosMessage}</h2>
+          </div>
+      )}
       </DragDropContext>
       {/* Si hay tareas filtradas, muestra un encabezado para estadísticas */}
-      {filteredTodos.length > 0 && <TodoStats/>}
+      {todos.length > 0 && <TodoStats/>}
     </>
   );
 }
