@@ -48,7 +48,7 @@ switch (filter) {
     if (!result.destination) return;  // Si no hay destino, no hay acción necesaria
 
     // Copia la lista de todos filtrada para no afectar a la lista original
-    const updatedTodos = Array.from(filteredTodos);
+    const updatedTodos = Array.from(todos);
     
     // Obtiene y remueve el elemento que se está reordenando de la lista
     const [reorderedItem] = updatedTodos.splice(result.source.index, 1);
