@@ -1,6 +1,6 @@
 // Importa los módulos necesarios de React y react-beautiful-dnd
 import { useContext } from "react";
-import { DragDropContext, Droppable, Draggable, DropResult } from "react-beautiful-dnd";
+import { DragDropContext, Droppable, DropResult } from "react-beautiful-dnd";
 
 //Styles
 import "./TodoContainer.css"
@@ -71,40 +71,26 @@ switch (filter) {
       <DragDropContext onDragEnd={handleOnDragEnd}>
         {/* Lista contenedora de tareas, identificada por "todos" */}
         {/* Lista de tareas o mensaje cuando no se encuentren */}
-          {filteredTodos.length > 0 ? (
-              <Droppable droppableId="todos">
-          {(provided) => (
-            // Renderiza la lista contenedora, proporcionando propiedades y referencias
-            <div {...provided.droppableProps} ref={provided.innerRef} className="todo-container">
-              
-              {/* Mapea y renderiza las tareas filtradas como elementos arrastrables */}
-              {filteredTodos.map((todo, index) => (
-                <Draggable  key={todo.id} draggableId={todo.id} index={index}>
-                  {(provided) => (
-                    // Renderiza una tarea como un elemento arrastrable
-                    <div
-                      {...provided.draggableProps}
-                      {...provided.dragHandleProps}
-                      ref={provided.innerRef}
-                    >
-                      {/* Renderiza el componente Todo para mostrar la tarea */}
-                      <Todo
-                        key={todo.id}
-                        id={todo.id}
-                        todoText={todo.text}
-                        completed={todo.completed}
-                        index={index}
-                      />
-                    </div>
-                  )}
-              
-                </Draggable>
-              ))}
-              {provided.placeholder} {/* Espacio reservado para elementos arrastrables */}
-            </div>
-            
-          )}
+        {filteredTodos.length > 0 ? (
+    <Droppable droppableId="todos">
+      {(provided) => (
+        // Renderiza la lista contenedora, proporcionando propiedades y referencias
+        <div {...provided.droppableProps} ref={provided.innerRef} className="todo-container">
           
+          {/* Mapea y renderiza las tareas filtradas como elementos arrastrables */}
+          {filteredTodos.map((todo, index) => (
+            // No necesitas el Draggable aquí, ya que cada Todo está dentro de un solo Droppable
+            <Todo
+              key={todo.id}
+              id={todo.id}
+              todoText={todo.text}
+              completed={todo.completed}
+              index={index}
+            />
+          ))}
+          {provided.placeholder} {/* Espacio reservado para elementos arrastrables */}
+        </div>
+      )}
         </Droppable>
         ):(
           <div className="no-todos-message">
