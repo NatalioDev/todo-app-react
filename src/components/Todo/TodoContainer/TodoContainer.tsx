@@ -79,7 +79,7 @@ switch (filter) {
               
               {/* Mapea y renderiza las tareas filtradas como elementos arrastrables */}
               {filteredTodos.map((todo, index) => (
-                <Draggable key={todo.id} draggableId={todo.id} index={index}>
+                <Draggable  key={todo.id} draggableId={todo.id} index={index}>
                   {(provided) => (
                     // Renderiza una tarea como un elemento arrastrable
                     <div

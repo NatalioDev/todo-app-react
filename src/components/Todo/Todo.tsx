@@ -27,7 +27,7 @@ export default function Todo({ todoText, completed, index, id }: TodoProps) {
 
   return (
     // Componente arrastrable usando Draggable de react-beautiful-dnd
-    <Draggable draggableId={id} index={index}>
+    <Draggable key={id} draggableId={id} index={index}>
       {(provided: DraggableProvided) => (
         // Renderiza la tarea como un elemento arrastrable
         <div

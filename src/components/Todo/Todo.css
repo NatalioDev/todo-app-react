@@ -12,6 +12,8 @@
     color: rgb(202, 205, 232);
     border-bottom: 2px solid rgb(57, 58, 76);
     background: rgb(37, 39, 60);
+    transition: background-color 0.2s ease;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0);
 }
 
 .todo img{
@@ -62,4 +64,9 @@
     word-break: break-all;
     color: rgb(202, 205, 232);
     font-weight: 400;
+}
+
+/* Añadimos estilos adicionales durante el arrastre */
+.todo.dragging {
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Añadimos una sombra durante el arrastre */
 }
