@@ -9,7 +9,7 @@
     position: relative;
     width: 100%;
     word-break: break-all;
-    font-size: smaller;
+    font-size: x-small;
     color: rgb(202, 205, 232);
     border-bottom: 2px solid rgb(57, 58, 76);
     background: rgb(37, 39, 60);
@@ -28,6 +28,6 @@
     font-size: 1rem;
     font-weight: 300;
     position: absolute;
-    left: 7.8rem;
+    left: 4rem;
     top: 120%;
 }
