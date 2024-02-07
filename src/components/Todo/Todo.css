@@ -68,6 +68,8 @@
 
 /* Añadimos estilos adicionales durante el arrastre */
 .todo.dragging {
+    margin: 0;
+    padding: 0;
     position: absolute;
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Añadimos una sombra durante el arrastre */
 }
