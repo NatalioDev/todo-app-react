@@ -1,16 +1,21 @@
-import { useState } from "react";
-// Estyles
-import "./Header.css"
+import "./Header.css";
+import { useTheme } from "../../utilites/context/UseTheme";
+
 
 export default function Header() {
-  const [theme, setTheme] = useState(true);
+  // Obtén el tema y la función para cambiarlo del contexto
+  const { theme, toggleTheme } = useTheme();
 
   return (
     <header>
       <h1>Todo</h1>
-      <button className="button-header" onClick={() => setTheme(!theme)}>
-        {theme ? (
-          <img src="icon/icon-moon.svg"alt="Moon Icon" />
+      {/* Botón para cambiar entre temas */}
+      <button 
+        aria-pressed={theme.name === "dark"}
+        className="button-header" onClick={toggleTheme}>
+        {/* Muestra el icono correspondiente al tema actual */}
+        {theme.name === "dark" ? (
+          <img src="icon/icon-moon.svg" alt="Moon Icon" />
         ) : (
           <img src="icon/icon-sun.svg" alt="Sun Icon" />
         )}
