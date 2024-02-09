@@ -11,12 +11,16 @@ import todoContext, { TodoContextProps } from "../../../utilites/TodoContext";
 // Importa el componente Todo utilizado en la lista de tareas
 import Todo from "../Todo"; 
 import TodoStats from "../TodoStats/TodoStats";
+import { useTheme } from "../../../utilites/context/UseTheme";
 
 // Componente funcional TodoContainer
 export default function TodoContainer() {
 
     // Obtiene las propiedades relevantes del contexto usando useContext
   const { todos, setTodos, filter } = useContext(todoContext) as TodoContextProps;
+
+
+  const { theme } = useTheme();
 
   // Filtra los todos basados en el filtro actual (All, Active, Completed)
   const filteredTodos = todos.filter((todo) => {
@@ -62,7 +66,7 @@ switch (filter) {
 
   // Si no hay tareas filtradas, muestra un mensaje indicando que no hay tareas
   if (todos.length === 0) {
-    return <h2 className="h2-no-todo">No Todos Yet! <br/> Add a new task to get started</h2>;
+    return <h2 className={`${theme.name === "dark" ? "h2-no-todo dark-h2-no-todo" : "h2-no-todo light-h2-no-todo"}`}>No Todos Yet! <br/> Add a new task to get started</h2>;
   }
   // Renderiza el componente
   return (
