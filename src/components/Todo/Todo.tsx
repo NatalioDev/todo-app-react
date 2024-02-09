@@ -2,6 +2,7 @@ import { useContext } from "react";
 import todoContext, { TodoContextProps } from "../../utilites/TodoContext";
 import { Draggable, DraggableProvided } from 'react-beautiful-dnd';
 import "./Todo.css"
+import { useTheme } from "../../utilites/context/UseTheme";
 
 interface TodoProps {
   todoText: string;
@@ -13,6 +14,10 @@ interface TodoProps {
 export default function Todo({ todoText, completed, index, id }: TodoProps) {
   // Utiliza la interfaz TodoContextProps para asegurar la tipificación correcta
   const { setCompleted, clearTodo } = useContext(todoContext) as TodoContextProps;
+
+
+  const { theme } = useTheme();
+
 
   // Maneja el clic en el círculo para cambiar el estado completado de la tarea
   const handleClick = () => {
@@ -31,7 +36,7 @@ export default function Todo({ todoText, completed, index, id }: TodoProps) {
       {(provided: DraggableProvided) => (
         // Renderiza la tarea como un elemento arrastrable
         <div
-          className={`todo${completed ? " completed" : ""}`}
+          className={`todo${completed ? " completed" : ""} ${theme.name === "dark" ? "todo-dark" : "todo-light"}`}
           ref={provided.innerRef}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
@@ -41,7 +46,7 @@ export default function Todo({ todoText, completed, index, id }: TodoProps) {
           <div className={`circle${completed ? " circle-gradient" : ""}`} onClick={handleClick}></div>
           
           {/* Texto de la tarea */}
-          <p className="todo-text">{todoText}</p>
+          <p className={`todo-text${theme.name === "dark" ? "text-dark" : "text-light"}`}>{todoText}</p>
           
           {/* Icono de la cruz para eliminar la tarea */}
           <img src="icon/icon-cross.svg" alt="cross" onClick={handleDelete} />
