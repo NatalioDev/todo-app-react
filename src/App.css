@@ -19,4 +19,8 @@ main {
   margin-top: 20px;
   width: 90%;
 }
-
+@media (min-width: 38em) {
+  .container {
+      width: 550px;
+  }
+}

@@ -8,8 +8,6 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   <ThemeContextProvider>
     <React.StrictMode>
       <App />
-    </React.StrictMode>,
+    </React.StrictMode>
   </ThemeContextProvider>
-  
-  
 )

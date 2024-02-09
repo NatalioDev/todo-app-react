@@ -13,7 +13,6 @@ function App() {
           <TodoInput/>
           <TodoContainer/>
         </TodoProvider>
-        
       </div>
     </main>
   )

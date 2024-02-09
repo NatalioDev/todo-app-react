@@ -25,3 +25,9 @@
     cursor: pointer;
     font-weight: 600;
 }
+
+@media (max-width: 600px) {
+    .stats-todo{
+        position: relative;
+    }
+}

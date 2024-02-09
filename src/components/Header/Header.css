@@ -26,3 +26,9 @@ header h1 {
     padding: 7px 7px 5px;
     transition: 1s;
 }
+@media (min-width: 38em) {
+    header {
+        margin: 70px 0 40px;
+        width: 550px;
+    }
+}
