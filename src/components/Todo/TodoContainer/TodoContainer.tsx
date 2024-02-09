@@ -97,7 +97,7 @@ switch (filter) {
       )}
         </Droppable>
         ):(
-          <div className="no-todos-message">
+          <div className={`no-todos-message ${theme.name === "dark" ? "no-todos-message-dark" : "no-todos-message-light"}`}>
             <h2>{noTodosMessage}</h2>
           </div>
       )}
