@@ -2,10 +2,14 @@ import { useContext, useState, ChangeEvent, FormEvent } from "react";
 import {v4 as uuidv4 } from "uuid";
 import "./TodoInput.css"
 import todoContext, { TodoType, TodoContextProps } from "../../../utilites/TodoContext";
+import { useTheme } from "../../../utilites/context/UseTheme";
 
 export default function TodoInput() {
     const [text, setText] = useState<string>("");
     const { addTodo } = useContext(todoContext) as TodoContextProps;
+
+  const { theme } = useTheme();
+
 
     const handleChange = (e : ChangeEvent<HTMLInputElement>) => {
         setText(e.target.value);
@@ -29,9 +33,10 @@ export default function TodoInput() {
     <>
     <div className="todo-input-wrapper">
         <form onClick={handleSubmit}>
-            <div className="todo-input">
+            <div className={`${theme.name === "dark" ? "todo-input" : "todo-input light-input"}`}>
                 <button className="add-btn">Add</button>
                 <input 
+                    className={`${theme.name === "dark" ? "input" : "input input-light"}`}
                     type="text" 
                     placeholder='Create a new Todo'
                     value={text}
