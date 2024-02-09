@@ -2,12 +2,16 @@ import { useContext } from "react"
 import todoContext, { TodoContextProps, TodoType } from "../../../utilites/TodoContext"
 import Filter from "../Filter/Filter";
 import "./TodoStats.css"
+import { useTheme } from "../../../utilites/context/UseTheme";
 
 
 
 export default function TodoStats() {
 
     const {todos, clearCompleted, handleFilter} = useContext(todoContext) as TodoContextProps;
+
+  const { theme } = useTheme();
+
 
     const countCompletedTodos = (todos: TodoType[]): number =>{
         return todos.filter(todo => todo.completed).length
@@ -19,7 +23,7 @@ export default function TodoStats() {
 
 
     return (
-        <div className="stats-todo">
+        <div className={`stats-todo${theme.name === "dark" ? " stats-todo-dark" : " stats-todo-light"}`}>
             <div className="left-todo-stats">
                 {countRemainingTodos(todos)} items left
             </div>
