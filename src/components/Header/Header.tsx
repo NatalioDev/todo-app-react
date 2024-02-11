@@ -1,4 +1,7 @@
+// Importa los estilos
 import "./Header.css";
+
+// Importa el contexto del Theme
 import { useTheme } from "../../utilites/context/UseTheme";
 
 

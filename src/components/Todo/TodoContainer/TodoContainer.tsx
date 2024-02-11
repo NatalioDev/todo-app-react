@@ -11,6 +11,8 @@ import todoContext, { TodoContextProps } from "../../../utilites/TodoContext";
 // Importa el componente Todo utilizado en la lista de tareas
 import Todo from "../Todo"; 
 import TodoStats from "../TodoStats/TodoStats";
+
+// Importa el contexto del Theme
 import { useTheme } from "../../../utilites/context/UseTheme";
 
 // Componente funcional TodoContainer
@@ -19,7 +21,7 @@ export default function TodoContainer() {
     // Obtiene las propiedades relevantes del contexto usando useContext
   const { todos, setTodos, filter } = useContext(todoContext) as TodoContextProps;
 
-
+  // Obtiene el contexto del theme
   const { theme } = useTheme();
 
   // Filtra los todos basados en el filtro actual (All, Active, Completed)
@@ -66,6 +68,7 @@ switch (filter) {
 
   // Si no hay tareas filtradas, muestra un mensaje indicando que no hay tareas
   if (todos.length === 0) {
+    // Devuelve un h2 con un mensaje y con una clase condicional para cambiar los estilos según el tema 
     return <h2 className={`${theme.name === "dark" ? "h2-no-todo dark-h2-no-todo" : "h2-no-todo light-h2-no-todo"}`}>No Todos Yet! <br/> Add a new task to get started</h2>;
   }
   // Renderiza el componente
@@ -83,7 +86,7 @@ switch (filter) {
           
           {/* Mapea y renderiza las tareas filtradas como elementos arrastrables */}
           {filteredTodos.map((todo, index) => (
-            // No necesitas el Draggable aquí, ya que cada Todo está dentro de un solo Droppable
+            // Pasamos los datos para que lo renderize el componente Todo
             <Todo
               key={todo.id}
               id={todo.id}
@@ -97,6 +100,7 @@ switch (filter) {
       )}
         </Droppable>
         ):(
+          // Mostramos un mensaje si cuando filtra no encuentra ningun todo, con una clase condicional para cambiar los estilos según el tema 
           <div className={`no-todos-message ${theme.name === "dark" ? "no-todos-message-dark" : "no-todos-message-light"}`}>
             <h2>{noTodosMessage}</h2>
           </div>
